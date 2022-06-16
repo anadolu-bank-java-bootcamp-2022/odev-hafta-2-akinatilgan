@@ -43,7 +43,24 @@ public class PlayWorldOfMagic implements CommandLineRunner {
 		
 		int spellsUsed = 0;
 		// ______ BASLANGIC _______ Kodunuz buradan baslamali
-		
+        float maxSpellDamage = 0;
+        //en güçlü büyüyü bulalım
+        for (int index = 0; index < spellDamageInfo.length; index++) {
+            if (spellDamageInfo[index] > maxSpellDamage) {
+                maxSpellDamage = spellDamageInfo[index];
+            }
+        }
+
+        for (float eachBossHp : bossHPs) {
+
+            int remaining = 0;
+            if (eachBossHp % maxSpellDamage != 0) {
+                remaining++;
+            }
+
+            int spellsUsedForThisBoss = (int)(eachBossHp / maxSpellDamage) + remaining;
+            spellsUsed += spellsUsedForThisBoss;
+        }
 		// ______ SON _______ Kodunuz burada bitmeli
 		/* NOT: ______ BASLANGIC _______ ve ______ SON _______ 
 		 * arasina istediginiz kadar sayida satir ekleyebilirsiniz.
